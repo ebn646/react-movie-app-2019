@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MovieCard from './movieCard';
+import MovieCard from '../moviecard/movieCard';
 
 class MovieListComponent extends Component {
     render(){

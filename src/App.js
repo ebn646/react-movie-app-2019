@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import MovieBrowser from './components/movieBrowser';
+import MovieBrowser from './components/moviebrowser/movieBrowser';
 
 class App extends Component {
   render() {

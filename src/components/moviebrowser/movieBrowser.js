@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
-import MovieBar from './movieBar';
-import MovieListComponent from './movieList';
+import MovieBar from '../moviebar/movieBar';
+import MovieListComponent from '../movielist/movieList';
 
 class MovieBrowser extends Component{
     render(){
