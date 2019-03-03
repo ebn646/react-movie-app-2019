@@ -12,6 +12,8 @@ export default (state = initialState, action) => {
             console.log('newState = ',newState)
             return newState
         case 'CLOSE_MODAL':
+        console.log('Close Modal reducer was called!! ',action.payload)
+
             return {...state, isOpen: false}
         default:
             return state

@@ -1,33 +1,45 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Dialog } from 'material-ui';
 import Styles from './modal.css';
-import MovieCard from '../moviecard/movieCard';
+import Card from 'react-bootstrap/Card';
+import { getMovieDetails,closeMovieModal } from '../../actions';
+
+const TMDB_IMAGE_BASE_URL = () => `https://image.tmdb.org/t/p/w300`;
 
 class MovieModal extends Component{
-    constructor(props) {
-        super(props);
+    componentDidMount(){
+        console.log('props = ',this.props.modal)
     }
 
-    renderList(){
-        return this.props.movies.map(movie => {
-            return(
-                <MovieCard key={movie.id} movie={movie} />
-            )
-        })
+    componentDidUpdate(){
+        //this.props.getMovieDetails(this.props.modal.movieId)
+        console.log('movie detail = ',this.props)
+    }
+
+    getImage(){
+        return{
+            poster_path: `${TMDB_IMAGE_BASE_URL()}${this.props.movieDetails.backdrop_path}`
+        }
     }
     
-    render(){
-        var isOpen = this.props.modal.isOpen ? 'open' : '';
-    
+    render(){    
         return (
-            <div id="modal" className={ isOpen }>
-                <div>
-                    <div>MOVID ID = {this.props.modal.movieId}</div>                 
-                    <div>
-                        { this.renderList() }
-                    </div>
-                </div>
-            </div>
+            <Dialog
+                open={this.props.modal.isOpen}
+                modal={false}
+                onRequestClose={ this.props.closeMovieModal}
+            >
+                <Card style={{ width: '40rem' }}>
+                    <Card.Img variant="top" src={ this.getImage().poster_path } />
+                    <Card.Body>
+                        <Card.Title>{this.props.movieDetails.title}</Card.Title>
+                        <Card.Text>
+                        {this.props.movieDetails.overview}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            </Dialog>
         )
     }
 }
@@ -35,8 +47,14 @@ class MovieModal extends Component{
 const mapStateToProps = (state) =>{
     return{
         modal: state.modal,
-        movies: state.movies
+        movies: state.movies,
+        movieDetails: state.movieDetails
     }
 }
 
-export default connect(mapStateToProps,null)(MovieModal)
+const mapDispatchToProps = {
+    getMovieDetails,
+    closeMovieModal
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(MovieModal)

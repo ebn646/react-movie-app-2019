@@ -1,20 +1,42 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MovieCard from '../moviecard/movieCard';
-import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import Grid from 'react-bootstrap/Container'
+import { BrowserRouter, Route, Link } from 'react-router-dom'
 import { fetchMovies } from '../../actions';
 
-class MovieListComponent extends Component {
-    componentWillMount(){
-        this.props.fetchMovies('top_rated')
+const styles = {
+    movieColumn: {
+      marginBottom: 20
     }
+}
+
+class MovieList extends Component {
+    constructor(props) {
+        super(props);
+    }
+    componentWillMount(){
+        var id = this.props.match.params.id || 'now_playing';
+        this.props.fetchMovies(id)
+    }
+    componentDidUpdate (prevProps) {
+        //let { match: { id } } = this.props
+        if (prevProps.match.params.id === this.props.match.params.id) {
+            return;
+        }else{
+            this.getMovies(this.props.match.params.id)
+        }
+      }
+    
     renderList(){
         return this.props.movies.map(movie => {
             return(
-                <MovieCard key={movie.id} movie={movie} />
+                <Col style={styles.movieColumn} key={movie.id} xs={12} sm={4} md={3} lg={3}>
+                    <MovieCard movie={movie} />
+                </Col>
             )
         })
     }
@@ -22,20 +44,12 @@ class MovieListComponent extends Component {
         this.props.fetchMovies(id);
     }
     render(){
-        console.log('render was called!! ',this.props.movies)
         return(
-            <Container>
+            <Grid>
                 <Row>
-                    <ButtonToolbar>
-                        <Button variant="primary" onClick={() => this.getMovies('top_rated')}>Top Rated</Button>
-                        <Button variant="primary" onClick={() => this.getMovies('now_playing')}>Now Playing</Button>
-                        <Button variant="primary" onClick={() => this.getMovies('popular')}>Popular</Button>
-                    </ButtonToolbar>;
+                    { this.renderList() }
                 </Row>
-                <Row>
-                 { this.renderList() }
-                </Row>
-            </Container>
+            </Grid>
         )
     }
 }
@@ -49,4 +63,4 @@ const mapDispatchToProps = {
     fetchMovies: fetchMovies 
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(MovieListComponent);
+export default connect(mapStateToProps,mapDispatchToProps)(MovieList);

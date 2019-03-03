@@ -7,12 +7,15 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import reducers from './reducers';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 const store = createStore(reducers, applyMiddleware(thunk))
 
 ReactDOM.render(
     <Provider store={ store }>
-        <App />
+        <MuiThemeProvider>
+            <App />
+        </MuiThemeProvider>
     </Provider>
 , document.getElementById('root'));
 
