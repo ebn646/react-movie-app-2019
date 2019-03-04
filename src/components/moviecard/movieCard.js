@@ -5,7 +5,7 @@ import { Card, CardTitle, CardMedia } from 'material-ui';
 import Styles from './moviecard.css';
 import { withRouter } from 'react-router-dom'
   
-const TMDB_IMAGE_BASE_URL = () => `https://image.tmdb.org/t/p/w300`;
+const TMDB_IMAGE_BASE_URL = () => `https://image.tmdb.org/t/p/w500`;
 
 const styles = {
     cardMedia: {
@@ -31,8 +31,6 @@ class MovieCard extends Component{
 
     showModal(){
         console.log(this.props.movie.id)
-        // this.props.openMovieModal(this.props.movie.id)
-        // this.props.getMovieDetails(this.props.movie.id)
         this.props.history.push(`/movie/${this.props.movie.id}`)
     }
 

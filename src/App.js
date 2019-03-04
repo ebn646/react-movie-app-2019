@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
+import MovieBrowser from './components/moviebrowser/movieBrowser'
 import MovieList from './components/movielist/movieList'
 import MovieDetail from './components/moviedetail/movieDetail'
 import MovieBar from './components/moviebar/movieBar'
@@ -12,7 +13,7 @@ class App extends Component {
       <BrowserRouter>
         <div>
          <MovieBar />
-          <Route path="/" exact component={MovieList} />
+          <Route path="/" exact component={MovieBrowser} />
           <Route path="/movies/:id" component={MovieList} />
           <Route path="/movie/:id" component={MovieDetail} />
         </div>

@@ -6,6 +6,8 @@ import Grid from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
 import Styles from './moviebar.css'
 import { fetchMovies } from '../../actions';
 
@@ -15,15 +17,21 @@ class MovieBar extends Component {
     }
     render(){
         return(
-            <Container >
-                <Row className="bar">
-                    <ButtonToolbar>
-                        <Link to={`/movies/top_rated`}>Top Rated</Link>
-                        <Link to={`/movies/now_playing`}>Now Playing</Link>
-                        <Link to={`/movies/popular`}>Popular</Link>
-                    </ButtonToolbar>
-                </Row>
-            </Container>
+            <Row className="navbar-container">
+                <Container>
+                    <Row className="bar">
+                        <Navbar>
+                            <Navbar.Brand href="/">Home</Navbar.Brand>
+                            <Nav className="mr-auto">
+                            <Nav.Link href={`/movies/top_rated`}>Top Rated</Nav.Link>
+                            <Nav.Link href={`/movies/now_playing`}>Now Playing</Nav.Link>
+                            <Nav.Link href={`/movies/popular`}>Popular</Nav.Link>
+                            </Nav>
+                        </Navbar>
+                    </Row>
+                </Container>
+            </Row>
+            
         )
     }
 }
