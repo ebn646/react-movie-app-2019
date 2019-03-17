@@ -30,3 +30,19 @@ export const getMovieDetails = (movieId) => {
         dispatch({ type: 'GET_MOVIE_DETAILS', payload: response.data })
     }
 }
+
+export const getVideos = (movieId) =>{
+    return async function(dispatch){
+        const response = await axios.get('https://api.themoviedb.org/3/movie/'+movieId+'/videos?api_key=1cec0394fa447a1f03d7a744faf9cbc9&language=en-US')
+        console.log('response = ',response)
+        dispatch({ type: 'GET_VIDEOS', payload: response.data.results})
+    }
+}
+
+export const search = (query) => {
+    return async function(dispatch){
+        const response = await axios.get('https://api.themoviedb.org/3/search/movie?api_key=1cec0394fa447a1f03d7a744faf9cbc9&language=en-US&query='+query+'&page=1&include_adult=false')
+        console.log('search response  = ',response)
+        dispatch({ type: 'GET_SEARCH_RESULTS', payload: response.data.results})
+    }
+}

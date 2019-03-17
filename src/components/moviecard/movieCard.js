@@ -36,24 +36,23 @@ class MovieCard extends Component{
 
     render(){
         return (
-            <Card
-                style={styles.card}
-                onClick= {() => this.showModal()}
-            >
-                <CardMedia 
-                    style={styles.cardMedia}
-                    overlay={
-                        <CardTitle
-                          title={this.props.movie.title} 
-                        />
-                    }
-                >
-                <img className="d-block img-fluid" src={ this.getThumbnail().poster_path }/>
-                <CardTitle
-                    title={this.props.movie.title} 
-                    />
-                </CardMedia>
-          </Card>
+        <Card
+        style={styles.card}
+        onMouseOver={() => this.setState({isMouseOver: true})}
+        onMouseLeave={() => this.setState({isMouseOver: false})}
+        onClick= {() => this.showModal()}
+      >
+        <CardMedia
+          style={styles.cardMedia}
+          overlay={
+            <CardTitle
+              title={this.props.movie.title} 
+            />
+          }
+        >
+          <img src={ this.getThumbnail().poster_path }/>
+        </CardMedia>
+      </Card>
         )
     }
 }

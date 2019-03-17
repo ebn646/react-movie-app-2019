@@ -10,7 +10,7 @@ class MovieBrowser extends Component{
                     <Carousel.Item>
                         <img
                         className="d-block w-100"
-                        src="https://via.placeholder.com/800x200"
+                        src="https://via.placeholder.com/800x250"
                         alt="First slide"
                         />
                         <Carousel.Caption>
@@ -21,7 +21,7 @@ class MovieBrowser extends Component{
                     <Carousel.Item>
                         <img
                         className="d-block w-100"
-                        src="https://via.placeholder.com/800x200"
+                        src="https://via.placeholder.com/800x250"
                         alt="Third slide"
                         />
 
@@ -33,7 +33,7 @@ class MovieBrowser extends Component{
                     <Carousel.Item>
                         <img
                         className="d-block w-100"
-                        src="https://via.placeholder.com/800x200"
+                        src="https://via.placeholder.com/800x250"
                         alt="Third slide"
                         />
 
