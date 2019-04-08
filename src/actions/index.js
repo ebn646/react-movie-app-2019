@@ -18,7 +18,6 @@ export const openMovieModal = (movieId) => {
 }
 
 export const closeMovieModal = () => {
-    console.log('close modal action was called!!!!')
     return {
       type: 'CLOSE_MODAL'
     };
@@ -44,5 +43,15 @@ export const search = (query) => {
         const response = await axios.get('https://api.themoviedb.org/3/search/movie?api_key=1cec0394fa447a1f03d7a744faf9cbc9&language=en-US&query='+query+'&page=1&include_adult=false')
         console.log('search response  = ',response)
         dispatch({ type: 'GET_SEARCH_RESULTS', payload: response.data.results})
+    }
+}
+
+// https://api.themoviedb.org/3/movie/550/credits?api_key=1cec0394fa447a1f03d7a744faf9cbc9
+export const getCast = (id) =>{
+    console.log('ID = ',id)
+    return async function(dispatch){
+        const response = await axios.get('https://api.themoviedb.org/3/movie/'+ id +'/credits?api_key=1cec0394fa447a1f03d7a744faf9cbc9')
+        console.log('getCast response  = ',response)
+        dispatch({ type: 'GET_CAST', payload: response.data})
     }
 }
